@@ -7,5 +7,7 @@
 all:
 	python main.py
 
+requirements.txt:
+	pip freeze > requirements.txt
 
 # end
