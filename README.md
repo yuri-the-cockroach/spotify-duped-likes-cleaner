@@ -24,6 +24,6 @@ This script was written in like 3 hours. There's no good reason why spotify can'
 9. ...
 10. Profit!
 
-If something went wrong and you want to revert the deletion, pleaes refer to [temp.py](./temp.py) file, but keep in mind that you WILL have to alter it to your requirements.
+If something went wrong and you want to revert the deletion, pleaes refer to [revert.py](./revert.py) file, but keep in mind that you WILL have to alter it to your requirements.
 
 For any modifications please refer to [the license](./LICENSE.md)
