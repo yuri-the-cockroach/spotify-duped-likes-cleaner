@@ -1,6 +1,4 @@
 import datetime
-import requests
-import base64
 import spotipy
 from spotipy import SpotifyOAuth
 import json
@@ -11,9 +9,6 @@ load_dotenv()
 CLID: str = os.getenv("CLID")
 SECRET: str = os.getenv("SECRET")
 DEBUG: bool = os.getenv("DEBUG")
-URL: str = "https://api.spotify.com/v1/"
-HEADER: str = "Authorization: Bearer "
-FILE_NAME: str = "dump.json"
 
 
 def formJson(sp: spotipy.client.Spotify) -> list[dict]:
