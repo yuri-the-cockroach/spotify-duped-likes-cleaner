@@ -11,3 +11,4 @@ tmp/
 *.json
 build
 htmlcov
+index.html
