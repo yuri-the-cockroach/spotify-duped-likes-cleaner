@@ -17,9 +17,11 @@ This script was written in like 3 hours. There's no good reason why spotify can'
 2. cd into it
 3. create an env via `python -m venv env`
 4. source the appropriate activate file, i.e. `source env/bin/activate` for bash/zsh or whatever else you use (weirdo)
-5. Install the requirements via `pip install -r requirements.txt`
-6. Run the script via `make` or by hand via `python main.py` and follow it's instructions...
-7. ...
-8. Profit!
+5. Create an app in [spotify dashboard](https://developer.spotify.com/dashboard)
+6. Get it's client id and secret and put them into `CLID` and `SECRET` environment variables respectively
+7. Install the requirements via `pip install -r requirements.txt`
+8. Run the script via `make` or by hand via `python main.py` and follow it's instructions...
+9. ...
+10. Profit!
 
 For any modifications please refer to [the license](./LICENSE.md)
