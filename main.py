@@ -8,7 +8,9 @@ from dotenv import load_dotenv
 load_dotenv()
 CLID: str = os.getenv("CLID")
 SECRET: str = os.getenv("SECRET")
-DEBUG: bool = os.getenv("DEBUG")
+# I fucking hate python, this is abysmal.
+# If I try to do it as a boolean, it's always true, so it is what it is...
+DEBUG: bool = bool(int(os.getenv("DEBUG")))
 
 
 def formJson(sp: spotipy.client.Spotify) -> list[dict]:
