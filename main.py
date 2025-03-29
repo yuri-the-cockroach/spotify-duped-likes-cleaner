@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import datetime
 import spotipy
 from spotipy import SpotifyOAuth
