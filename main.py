@@ -70,11 +70,10 @@ def deleteDup(sp: spotipy.client.Spotify, dupes: list[list[dict]]):
         )
 
     # Still can't query for more than 50 songs at a time
-    if len(to_delete) > 50:
-        for i in range(0, len(to_delete), 50):
-            if DEBUG:
-                continue
-            sp.current_user_saved_tracks_delete(to_delete[0 + i : 50 + i])
+    for i in range(0, len(to_delete), 50):
+        if DEBUG:
+            continue
+        sp.current_user_saved_tracks_delete(to_delete[0 + i : 50 + i])
 
 
 def main():
