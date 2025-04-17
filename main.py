@@ -126,6 +126,10 @@ def main():
             )
             dupes_list.append(isrc_dict[isrc])
 
+    if not len(dupes_list):
+        print("found no duplicates... bye!")
+        exit()
+
     ret: str = input(f"found {len(dupes_list)} dupes... Delete them? y/N\n")
     if ret != "y" and ret != "Y":
         print("Anything that is not y/Y is treated as no. Exiting now...")
