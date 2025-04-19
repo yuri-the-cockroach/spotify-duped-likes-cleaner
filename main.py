@@ -15,27 +15,32 @@ SECRET: str = os.getenv("SECRET")
 DEBUG: bool = bool(int(os.getenv("DEBUG")))
 
 
-def formJson(sp: spotipy.client.Spotify) -> list[dict]:
+async def getSongs(sp: spotipy.client.Spotify, offset: int, limit: int):
+    return sp.current_user_saved_tracks(limit=limit, offset=offset)
+
+
+async def formJson(sp: spotipy.client.Spotify) -> list[dict]:
     """Make one big json out of all songs in your saved
     Spotify api only allow to get 50 songs at a time
     so you have to load them in a loop
     """
     total: list[dict] = list()
     sp.current_user_saved_tracks
-    offset = 0
     limit = 50
 
     # Because python is shit and doesn't have a do-while loop
-    results: list[dict] = sp.current_user_saved_tracks(limit=limit, offset=offset)[
-        "items"
-    ]
-    total.extend(results)
-    offset += limit
-    while len(results):
-        print(f"Current offset = {offset}")
-        results = sp.current_user_saved_tracks(limit=limit, offset=offset)["items"]
-        total.extend(results)
-        offset += limit
+    results: list[dict] = sp.current_user_saved_tracks(limit=limit, offset=0)
+    total.extend(results["items"])
+
+    songNum = results["total"]
+    threads = list()
+    for offset in range(50, results["total"], limit):
+        threads.append(await asyncio.to_thread(getSongs, sp, offset, limit))
+
+    for i, thread in enumerate(threads):
+        print(f"Fetched {i * 50}/{songNum}")
+        results = await asyncio.gather(thread)
+        total.extend(results[0]["items"])
 
     print(f"Got {len(total)} songs total")
     return total
