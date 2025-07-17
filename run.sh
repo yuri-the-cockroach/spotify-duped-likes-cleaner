@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # fuck python envs...
-export PATH=$(/usr/bin/realpath $(sed -e "s/run.sh$//" <(echo "$0")))
-cd $PATH
+cd $(realpath $(dirname $0))
 source ./env/bin/activate
 ./main.py
 deactivate
