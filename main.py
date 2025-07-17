@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import asyncio
 import datetime
 import spotipy
 from spotipy import SpotifyOAuth
@@ -81,7 +82,7 @@ def deleteDup(sp: spotipy.client.Spotify, dupes: list[list[dict]]):
         sp.current_user_saved_tracks_delete(to_delete[0 + i : 50 + i])
 
 
-def main():
+async def main():
     # Create a session
     sp: spotipy.client.Spotify = spotipy.Spotify(
         auth_manager=SpotifyOAuth(
@@ -102,7 +103,7 @@ def main():
         with open("dump.json", "r") as file:
             track_list = json.load(file)
     else:
-        track_list: list[dict] = formJson(sp)
+        track_list: list[dict] = await formJson(sp)
 
     for item in track_list:
         isrc = item["track"]["external_ids"][
@@ -151,4 +152,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
